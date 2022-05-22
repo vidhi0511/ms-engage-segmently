@@ -1,0 +1,4 @@
+jupyter==1.0.0
+pandas==1.4.2
+openpyxl==3.0.10
+seaborn==0.11.2
