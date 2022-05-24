@@ -26,4 +26,5 @@ User is an automotive OEM (Original Equiment Manufacture). He wants to gain unde
 - For the second sprint, the epic is to create a working dashboard which will give access to the OEMs to access the dashboard & make queries
 - For the thrid sprint, the epic to to create a dockerized container with database which can host end to end solution
 
+## Solution Architecture
 
