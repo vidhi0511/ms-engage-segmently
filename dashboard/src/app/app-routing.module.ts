@@ -1,20 +1,42 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { BuildComponent } from './pages/welcome/build/build.component';
-import { DiscoverComponent } from './pages/welcome/discover/discover.component';
-import { LaunchComponent } from './pages/welcome/launch/launch.component';
+import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 
-const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/welcome' },
-  { path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
-  {path:'build',component:BuildComponent},
-  {path:'launch',component:LaunchComponent},
-  {path:'',component:DiscoverComponent}
+import { FullLayoutComponent } from "./layouts/full-layout/full-layout.component";
+import { CommonLayoutComponent } from "./layouts/common-layout/common-layout.component";
 
+import { FullLayout_ROUTES } from "./shared/routes/full-layout.routes";
+import { CommonLayout_ROUTES } from "./shared/routes/common-layout.routes";
+
+const appRoutes: Routes = [
+    {
+        path: '',
+        redirectTo: '/discover',
+        pathMatch: 'full',
+    },
+    { 
+        path: '', 
+        component: CommonLayoutComponent,
+        children: CommonLayout_ROUTES 
+    },
+    { 
+        path: '', 
+        component: FullLayoutComponent, 
+        children: FullLayout_ROUTES
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [
+        RouterModule.forRoot(appRoutes, { 
+            preloadingStrategy: PreloadAllModules,
+            anchorScrolling: 'enabled',
+            scrollPositionRestoration: 'enabled' 
+        })
+    ],
+    exports: [
+        RouterModule
+    ]
 })
-export class AppRoutingModule { }
+
+export class AppRoutingModule {
+}

@@ -1,0 +1,213 @@
+<div class="page-header">
+    <div class="d-md-flex align-items-md-center justify-content-between">
+        <div class="media m-v-10 align-items-center">
+            <nz-avatar nzIcon="user" [nzSize]="50" nzSrc="assets/images/avatars/thumb-3.jpg"></nz-avatar>
+            <div class="media-body m-l-15">
+                <h4 class="m-b-0">Welcome Admin!</h4>
+                <span class="text-gray">Automotive OEM</span>
+            </div>
+        </div>
+        <div class="d-md-flex align-items-center d-none">
+            <div class="media align-items-center m-r-40 m-v-5">
+                <div class="font-size-27">
+                    <i class="text-primary" nz-icon nzType="profile" theme="outline"></i>
+                </div>
+                <div class="d-flex align-items-center m-l-10">
+                    <h2 class="m-b-0 m-r-5">6</h2>
+                    <span class="text-gray">Builds Configs Created</span>
+                </div>
+            </div>
+            <div class="media align-items-center m-r-40 m-v-5">
+                <div class="font-size-27">
+                    <i class="text-success" nz-icon nzType="appstore" theme="outline"></i>
+                </div>
+                <div class="d-flex align-items-center m-l-10">
+                    <h2 class="m-b-0 m-r-5">4</h2>
+                    <span class="text-gray">Launch Configs Created</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="file-manager-wrapper">
+    <div class="file-manager-nav" [ngClass]="{'nav-open': isNavOpen}">
+        <div class="d-flex flex-column justify-content-between h-100">
+            <div class="p-t-20">
+                <ul nz-menu [nzMode]="'inline'">
+                    
+                    <li nz-menu-item *ngFor="let carSegment of carSegmentsData; let i = index" [nzSelected]="i==0" (click)="segmentChange(i)">
+                        <i class="text-primary"  style="font-size: 32px;"  nz-icon nzType="{{carSegment.svg}}" >
+                        </i>
+                        <span>{{carSegment.label}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="file-manager-content">
+        <div class="file-manager-content-header">
+            <div class="file-manager-search">
+                <p class="message">{{carSegmentSelected.label}}</p>
+            </div>
+            <div class="file-manager-tools">
+                <ul class="list-inline m-b-0">
+                    <a nz-dropdown [nzDropdownMenu]="menu">
+                        Hover me
+                        <i nz-icon nzType="down"></i>
+                      </a>
+                      <nz-dropdown-menu #menu="nzDropdownMenu">
+                        <ul nz-menu nzSelectable>
+                          <li nz-menu-item>1st menu item</li>
+                          <li nz-menu-item>2nd menu item</li>
+                          <li nz-menu-item>3rd menu item</li>
+                        </ul>
+                      </nz-dropdown-menu>
+                </ul>
+            </div>
+        </div>    
+        <div>
+            <!-- PART 1: KPI Cards -->
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <nz-card>
+                        <div class="media align-items-center">
+                            <nz-avatar [nzSize]="60" nzIcon="dollar" class="ant-avatar-blue"  ></nz-avatar>
+                            <div class="m-l-15">
+                                <h2 class="m-b-0">$23,523</h2>
+                                <p class="m-b-0 text-muted">Annual Sales</p>
+                            </div>
+                        </div>
+                    </nz-card>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <nz-card>
+                        <div class="media align-items-center">
+                            <nz-avatar [nzSize]="50" nzIcon="line-chart" class="ant-avatar-cyan"  ></nz-avatar>
+                            <div class="m-l-15">
+                                <h2 class="m-b-0">+ 17.21%</h2>
+                                <p class="m-b-0 text-muted">Average Price</p>
+                            </div>
+                        </div>
+                    </nz-card>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <nz-card>
+                        <div class="media align-items-center">
+                            <nz-avatar [nzSize]="50" nzIcon="profile" class="ant-avatar-gold"  ></nz-avatar>
+                            <div class="m-l-15">
+                                <h2 class="m-b-0">3,685</h2>
+                                <p class="m-b-0 text-muted">Price Std Dev</p>
+                            </div>
+                        </div>
+                    </nz-card>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <nz-card>
+                        <div class="media align-items-center">
+                            <nz-avatar [nzSize]="50" nzIcon="user" class="ant-avatar-purple"  ></nz-avatar>
+                            <div class="m-l-15">
+                                <h2 class="m-b-0">1,832</h2>
+                                <p class="m-b-0 text-muted">Variants Available</p>
+                            </div>
+                        </div>
+                    </nz-card>
+                </div>
+            </div>
+            <!-- PART 2: GRAPH -->
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    <nz-card>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5>Total Revenue</h5>
+                            <div>
+                                <nz-radio-group [(ngModel)]="revenueChartFormat">
+                                    <label nz-radio-button nzValue="revenueMonth">Month</label>
+                                    <label nz-radio-button nzValue="revenueYear">Year</label>
+                                </nz-radio-group>
+                            </div>
+                        </div>
+                        <div class="m-t-50" style="height: 330px">
+                            <canvas ngChartjs 
+                                [datasets]="revenueChartData" 
+                                [labels]="revenueChartLabels"
+                                [options]="revenueChartOptions" 
+                                [colors]="revenueChartColors" 
+                                [legend]="false"
+                                [chartType]="revenueChartType">
+                            </canvas>
+                        </div>
+                    </nz-card>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <nz-card>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5>Total Revenue</h5>
+                            <div>
+                                <nz-radio-group [(ngModel)]="revenueChartFormat">
+                                    <label nz-radio-button nzValue="revenueMonth">Month</label>
+                                    <label nz-radio-button nzValue="revenueYear">Year</label>
+                                </nz-radio-group>
+                            </div>
+                        </div>
+                        <div class="m-t-50" style="height: 330px">
+                            <canvas ngChartjs 
+                                [datasets]="revenueChartData" 
+                                [labels]="revenueChartLabels"
+                                [options]="revenueChartOptions" 
+                                [colors]="revenueChartColors" 
+                                [legend]="false"
+                                [chartType]="revenueChartType">
+                            </canvas>
+                        </div>
+                    </nz-card>
+                </div>
+            </div>
+            <!-- PART 3: All Model Variant Data Table -->
+            <div class="row">
+                <div class="col-md-12">
+                    <nz-card>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5>Vehicles of this Segement</h5>
+                        </div>
+                        <div class="m-t-30">
+                            <nz-table #productTable [nzData]="productsList" [nzShowPagination]="false" class="no-border-last">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Sales</th>
+                                        <th>Earning</th>
+                                        <th>Stock Left</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of productTable.data">
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <nz-avatar nzShape="square"  nzIcon="picture" [nzSrc]="item.avatar"></nz-avatar>
+                                                <span class="m-l-10">{{item.name}}</span>
+                                            </div>
+                                        </td>
+                                        <td>{{item.sales}}</td>
+                                        <td>${{item.earn | number:'3.2-5'}}</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="w-90 p-r-10">
+                                                    <nz-progress *ngIf="item.stock > 60" [nzStrokeColor]="cyan" [nzPercent]="item.stock" nzSize="small" [nzShowInfo]="false"></nz-progress>
+                                                    <nz-progress *ngIf="item.stock > 40 && item.stock < 60" [nzStrokeColor]="gold" [nzPercent]="item.stock" nzSize="small" [nzShowInfo]="false"></nz-progress>
+                                                    <nz-progress *ngIf="item.stock < 40" [nzStrokeColor]="red" [nzPercent]="item.stock" nzSize="small" [nzShowInfo]="false"></nz-progress>
+                                                </div>
+                                                <span>{{item.stock}}</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </nz-table>
+                        </div>
+                    </nz-card>
+                </div>
+            </div>
+        </div>    
+    </div>
+</div>    
