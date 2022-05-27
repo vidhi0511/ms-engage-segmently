@@ -1,0 +1,28 @@
+nz-button-group {
+    margin: 0 8px 8px 0;
+    
+}
+.heading{
+    font-size: 1.6rem;
+    color: rgb(41, 41, 83);
+}
+button{
+    font-size: 0.8rem;
+    margin: 1%;
+    width: 10%;
+    border: none;
+}
+i{
+    padding-left: 22%;
+}
+
+.end-button [nz-button]{
+    margin-right: 8px;
+    margin-top: 8%;
+    margin-bottom: 12px;
+    width: 18%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 2.7%;
+    font-size: 1.2rem;
+}
