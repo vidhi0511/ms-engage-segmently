@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import { NzIconService } from 'ng-zorro-antd/icon';
 
 @Component({
-    selector: 'add-build-config',
-    templateUrl: './add-build-config.html'
+    selector: 'list-launch-config',
+    templateUrl: './list-launch-config.html'
 })
-export class AddBuildConfigComponent {
+export class ListLaunchConfigComponent {
     constructor( private _iconService: NzIconService) {
         
       }
-      
 }

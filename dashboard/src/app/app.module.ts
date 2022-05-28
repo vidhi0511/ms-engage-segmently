@@ -14,12 +14,13 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { CommonLayoutComponent } from './layouts/common-layout/common-layout.component';
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
-
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NgChartjsModule } from 'ng-chartjs';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { ThemeConstantService } from './shared/services/theme-constant.service';
 import { CarSegmentConstantService } from './shared/services/car-segment-constant.service';
 import { SegmentDiscoverService } from './shared/services/segment-discover.service';
+
 
 registerLocaleData(en);
 
@@ -27,7 +28,8 @@ registerLocaleData(en);
     declarations: [
         AppComponent,
         CommonLayoutComponent,
-        FullLayoutComponent
+        FullLayoutComponent,
+      
     ],
     imports: [
         BrowserModule,
@@ -36,6 +38,7 @@ registerLocaleData(en);
         NzBreadCrumbModule,
         TemplateModule,
         SharedModule,
+        NzDropDownModule,
         NgChartjsModule,
         NgxEchartsModule.forRoot({
             /**
