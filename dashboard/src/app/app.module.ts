@@ -20,6 +20,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { ThemeConstantService } from './shared/services/theme-constant.service';
 import { CarSegmentConstantService } from './shared/services/car-segment-constant.service';
 import { SegmentDiscoverService } from './shared/services/segment-discover.service';
+import { AppsService } from './shared/services/apps.service';
 
 
 registerLocaleData(en);
@@ -60,7 +61,8 @@ registerLocaleData(en);
         },
         ThemeConstantService,
         CarSegmentConstantService,
-        SegmentDiscoverService
+        SegmentDiscoverService,
+        AppsService
     ],
     bootstrap: [AppComponent]
 })

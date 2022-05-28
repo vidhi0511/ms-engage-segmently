@@ -1,1 +1,30 @@
-<h1>Test is working</h1>
+<div class="file-manager-wrapper">
+    <div class="file-manager-nav" [ngClass]="{'nav-open': isNavOpen}">
+        <div class="d-flex flex-column justify-content-between h-100">
+            <div class="p-t-20">
+                <ul nz-menu [nzMode]="'inline'">
+                    <li nz-menu-item *ngFor="let buildConfig of buildConfigsList; let i = index" [nzSelected]="i==0" (click)="buildConfigChange(i)">
+                        <i class="text-primary"  style="font-size: 32px;"  nz-icon nzType="{{buildConfig.svg}}" >
+                        </i>
+                        <span>{{buildConfig.name}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="file-manager-content" style="padding: 10px 30px">
+        <!-- <div class="page-header has-tab">
+            <h2 class="font-weight-normal">Build Configurations</h2>
+        </div> -->
+        <nz-tabset class="page-header-tab">
+            <nz-tab nzTitle="Analytics Report">
+                <div class="container">
+                </div>
+            </nz-tab>
+            <nz-tab nzTitle="Build Configuration">
+                <div class="container">
+                </div>
+            </nz-tab>
+        </nz-tabset>          
+    </div>
+</div>    

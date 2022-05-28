@@ -1,13 +1,68 @@
 import { Component } from '@angular/core';
 import { NzIconService } from 'ng-zorro-antd/icon';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AppsService } from "../../shared/services/apps.service";
 
 @Component({
     selector: 'add-build-config',
     templateUrl: './add-build-config.html'
 })
 export class AddBuildConfigComponent {
-    constructor( private _iconService: NzIconService) {
-        
-      }
-      
+    addNewBuildConfigFormGroup: FormGroup;
+    selectSegment: any;
+    featuresFormConfigs: any;
+    isFormConfigLoaded:boolean = false;
+    constructor(private fb: FormBuilder, private appService: AppsService) {}
+
+    submitForm(): void {
+       console.log("Submitted") 
+    }
+
+    ngOnInit(): void {
+        let defaultData = {
+            selectSegment: [ null, [ Validators.required ] ],
+            buildName: [ null, [ Validators.required ] ],
+        };
+        this.appService.getfeatureFormBuildData().subscribe(data => {
+            let formBuilderDictionary = {}
+            this.featuresFormConfigs = data;
+            for(let featuresFormConfigKey in this.featuresFormConfigs){
+                formBuilderDictionary[featuresFormConfigKey] = [ null, [ Validators.required ] ]
+            }
+            this.addNewBuildConfigFormGroup = this.fb.group({
+                ...defaultData,
+                ...formBuilderDictionary
+            });
+            this.isFormConfigLoaded =true
+        });
+    }
+
+    public isObject(val): boolean {
+        return val.constructor.name === 'Object';
+    }
+    public isArray(val): boolean {
+        return val.constructor.name === 'Array';
+    }
+
+    randomIntFromInterval(min, max) { // min and max included 
+        return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
+    public fillRandomData(){
+        let random_dict = {}
+        for (const [key, value] of Object.entries(this.featuresFormConfigs)) {
+            if(this.isArray(value)){
+                let value_array = value as Array<any>; // typecasting
+                random_dict[key] = value_array[this.randomIntFromInterval(0,(value_array.length-1))]
+            }
+            if(this.isObject(value)){
+                random_dict[key] =  Math.round((value['max'] - value['min'])/20 * this.randomIntFromInterval(-10,10) + value['mean'])
+            }
+        }
+        console.log(random_dict)
+        this.addNewBuildConfigFormGroup.patchValue(random_dict);
+    }
+
+    
+    
 }

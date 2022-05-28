@@ -1,1 +1,59 @@
-<h1>Test is working</h1>
+<div class="page-header has-tab">
+    <h2 class="font-weight-normal">Add Build Configuration</h2>
+</div>
+<div class="container" style="margin-top: 40px;" *ngIf="isFormConfigLoaded">
+    <form nz-form [formGroup]="addNewBuildConfigFormGroup" (ngSubmit)="submitForm()">
+        <nz-card nzTitle="Basic Information">
+            <div class="col-md-12">
+                <nz-form-item>
+                    <nz-form-label nzFor="selectSegment" nzRequired>Segment</nz-form-label>
+                    <nz-form-control>
+                        <nz-select class="w-100" formControlName="selectSegment" nzPlaceHolder="Select Segment">
+                            <nz-option nzValue="CarA" nzLabel="Car A"></nz-option>
+                            <nz-option nzValue="CarB" nzLabel="Car B"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div class="col-md-12">
+                <nz-form-item>
+                    <nz-form-label nzFor="buildName" nzRequired>Enter Build Configuration Name</nz-form-label>
+                    <nz-form-control nzErrorTip="Please enter a build configuration name!">
+                    <input formControlName="buildName" nz-input placeholder="Your Build Configuration Name">
+                    </nz-form-control>
+                </nz-form-item>
+            </div>    
+        </nz-card>
+        <nz-card nzTitle="Configuration" [nzExtra]="randomData">
+            <div class="col-md-12" *ngFor="let featuresFormConfig of featuresFormConfigs|keyvalue">
+                <div *ngIf="isObject(featuresFormConfig.value)">
+                    <nz-form-item>
+                        <nz-form-label nzFor="{{featuresFormConfig.key}}" nzRequired>{{featuresFormConfig.key}}</nz-form-label>
+                        <input nz-input type="number" placeholder="Select {{featuresFormConfig.key}}" formControlName="{{featuresFormConfig.key}}">
+                    </nz-form-item>
+                </div>
+                <div *ngIf="isArray(featuresFormConfig.value)">
+                    <nz-form-item>
+                        <nz-form-label nzFor="{{featuresFormConfig.key}}" nzRequired>{{featuresFormConfig.key}}</nz-form-label>
+                        <nz-select class="w-100" nzPlaceHolder="Select {{featuresFormConfig.key}}" formControlName="{{featuresFormConfig.key}}">
+                            <nz-option *ngFor="let featureItem of featuresFormConfig.value" nzValue="{{featureItem}}" nzLabel="{{featureItem}}"></nz-option>
+                        </nz-select>
+                    </nz-form-item>
+                </div>
+
+            </div>
+        </nz-card>
+        <ng-template #randomData>
+            <a nz-button nzType="secondary" (click)="fillRandomData()">Fill Random Data</a>
+        </ng-template>
+        <nz-card>
+            <div class="col-md-4 offset-md-4">
+                <nz-form-item>
+                    <nz-form-control>
+                        <button style="width:100%;" nz-button nzType="primary" [disabled]="!addNewBuildConfigFormGroup.valid">Submit</button>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>    
+        </nz-card>
+    </form>
+</div>
