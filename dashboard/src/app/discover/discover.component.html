@@ -47,28 +47,29 @@
         </div>
     </div>
     <div class="file-manager-content">
-        <div class="file-manager-content-header">
-            <div class="file-manager-search">
-                <p class="message">{{carSegmentSelected.label}}</p>
-            </div>
-            <div class="file-manager-tools">
-                <ul class="list-inline m-b-0">
-                    <a nz-dropdown [nzDropdownMenu]="menu">
-                        Hover me
-                        <i nz-icon nzType="down"></i>
-                      </a>
-                      <nz-dropdown-menu #menu="nzDropdownMenu">
-                        <ul nz-menu nzSelectable>
-                          <li nz-menu-item>1st menu item</li>
-                          <li nz-menu-item>2nd menu item</li>
-                          <li nz-menu-item>3rd menu item</li>
-                        </ul>
-                      </nz-dropdown-menu>
-                </ul>
-            </div>
-        </div>    
         <div>
+            <div class="row">
+                <div class="col-md-12">
+                    <nz-card>
+                        <div class="d-flex justify-content-between">
+                            <div class="media align-items-center">
+                                <i nz-icon nzType="{{carSegmentSelected.svg}}" class="text-primary" style="font-size: 48px;"></i>
+                                <div class="m-l-10">
+                                    <h4 class="m-b-0">{{carSegmentSelected.label}} | {{carSegmentSelected.short_desc}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-t-40">
+                            <h6>Description:</h6>
+                            <p>{{carSegmentSelected.long_desc}}</p>
+                        </div>
+                    </nz-card>
+                </div>
+            </div>
             <!-- PART 1: KPI Cards -->
+            <div class="m-l-20">
+                <h4 class="font-weight-normal m-b-10">{{carSegmentSelected.label}} Segment KPIs</h4>
+            </div>
             <div class="row">
                 <div class="col-md-6 col-lg-3">
                     <nz-card>
@@ -115,12 +116,15 @@
                     </nz-card>
                 </div>
             </div>
-            <!-- PART 2: GRAPH -->
+            <!-- PART 2: SALES RELATED GRAPH -->
+            <div class="m-l-20">
+                <h4 class="font-weight-normal m-b-10">{{carSegmentSelected.label}} Sales Performance</h4>
+            </div>
             <div class="row">
                 <div class="col-md-12 col-lg-6">
                     <nz-card>
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5>Total Revenue</h5>
+                            <h5>Sales Across Time</h5>
                             <div>
                                 <nz-radio-group [(ngModel)]="revenueChartFormat">
                                     <label nz-radio-button nzValue="revenueMonth">Month</label>
@@ -142,34 +146,81 @@
                 </div>
                 <div class="col-md-12 col-lg-6">
                     <nz-card>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5>Total Revenue</h5>
-                            <div>
-                                <nz-radio-group [(ngModel)]="revenueChartFormat">
-                                    <label nz-radio-button nzValue="revenueMonth">Month</label>
-                                    <label nz-radio-button nzValue="revenueYear">Year</label>
-                                </nz-radio-group>
-                            </div>
-                        </div>
-                        <div class="m-t-50" style="height: 330px">
+                        <h5 class="m-b-0">% Sales Against other Segments</h5>
+                        <div class="m-v-60 text-center" style="height: 200px">
                             <canvas ngChartjs 
-                                [datasets]="revenueChartData" 
-                                [labels]="revenueChartLabels"
-                                [options]="revenueChartOptions" 
-                                [colors]="revenueChartColors" 
-                                [legend]="false"
-                                [chartType]="revenueChartType">
+                                [data]="customersChartData" 
+                                [labels]="customersChartLabels" 
+                                [chartType]="customersChartType"
+                                [colors]="customersChartColors"
+                                [options]="customersChartOptions"
+                                [legend]="false">
                             </canvas>
+                        </div>
+                        <div class="row border-top p-t-25">
+                            <div class="col-4">
+                                <div class="d-flex justify-content-center">
+                                    <div class="media align-items-center">
+                                        <nz-badge nzStatus="default" [nzColor]="cyan"></nz-badge>
+                                        <div class="m-l-5">
+                                            <h4 class="m-b-0">350</h4>
+                                            <p class="m-b-0 muted">New</p>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="d-flex justify-content-center">
+                                    <div class="media align-items-center">
+                                        <nz-badge nzStatus="default" [nzColor]="purple"></nz-badge>
+                                        <div class="m-l-5">
+                                            <h4 class="m-b-0">450</h4>
+                                            <p class="m-b-0 muted">Returning</p>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="d-flex justify-content-center">
+                                    <div class="media align-items-center">
+                                        <nz-badge nzStatus="default" [nzColor]="gold"></nz-badge>
+                                        <div class="m-l-5">
+                                            <h4 class="m-b-0">100</h4>
+                                            <p class="m-b-0 muted">Others</p>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </nz-card>
                 </div>
             </div>
-            <!-- PART 3: All Model Variant Data Table -->
+            <!-- PART 3: Price Distribution for Car A -->
+            <div class="m-l-20">
+                <h4 class="font-weight-normal m-b-10">{{carSegmentSelected.label}} Price Distribution</h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        <nz-card>
+                        </nz-card>
+                    </div>
+                </div>
+            </div>
+            <!-- PART 4: Features Based Clusters for Car A -->
+            <div class="m-l-20">
+                <h4 class="font-weight-normal m-b-10">{{carSegmentSelected.label}} Clusters Based On Features</h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        <nz-card>
+                        </nz-card>
+                    </div>
+                </div>
+            </div>
+            <!-- PART 5: All Model Variant Data Table -->
             <div class="row">
                 <div class="col-md-12">
                     <nz-card>
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5>Vehicles of this Segement</h5>
+                            <h5>Vehicles in this Segement</h5>
                         </div>
                         <div class="m-t-30">
                             <nz-table #productTable [nzData]="productsList" [nzShowPagination]="false" class="no-border-last">

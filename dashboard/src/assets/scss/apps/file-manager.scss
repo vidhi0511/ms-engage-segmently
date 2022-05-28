@@ -6,9 +6,10 @@ $file-manager-content-details-width : 320px;
 .file-manager-wrapper {
     background: $white;
     border: 1px solid $border-color;
-    height: calc(100vh - #{$file-manager-content-height});
+    height: calc(90vh - #{$file-manager-content-height});
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 
     .file-manager-nav {
         border-right: 1px solid $border-color;

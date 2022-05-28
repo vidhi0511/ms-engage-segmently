@@ -6,6 +6,7 @@ import { DashboardComponent } from './discover.component';
 /** Import any ng-zorro components as the module required except icon module */
 
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
@@ -23,6 +24,7 @@ const antdModule = [
     NzMenuModule,
     NzCardModule,
     NzTableModule,
+    NzBadgeModule,
     
 ]
 

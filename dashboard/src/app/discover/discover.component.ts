@@ -138,4 +138,20 @@ export class DashboardComponent implements OnInit {
             stock: 76,
         }
     ]    
+
+
+    // Pie Chart
+
+    customersChartLabels: string[] = ['New', 'Returning', 'Others'];
+    customersChartData: number[] = [350, 450, 100];
+    customersChartColors: Array<any> =  [{ 
+        backgroundColor: [this.cyan, this.purple, this.gold],
+        pointBackgroundColor : [this.cyan, this.purple, this.gold]
+    }];
+    customersChartOptions: any = {
+        cutoutPercentage: 75,
+        maintainAspectRatio: false
+    }
+    customersChartType = 'doughnut';
+
 }
