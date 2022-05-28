@@ -16,7 +16,7 @@ export const ROUTES: SideNavInterface[] = [
         icon: 'appstore',
         submenu: [
             { 
-                path: '',
+                path: '/build/add-config',
                 title: 'Add Build Configs', 
                 iconType: '', 
                 icon: '',
@@ -24,7 +24,7 @@ export const ROUTES: SideNavInterface[] = [
                 submenu: []
             },
             { 
-                path: '',
+                path: '/build/list-configs',
                 title: 'List Build Configs', 
                 iconType: '', 
                 icon: '',
@@ -41,7 +41,7 @@ export const ROUTES: SideNavInterface[] = [
         icon: 'appstore',
         submenu: [
             { 
-                path: '',
+                path: '/launch/add-config',
                 title: 'Add Launch Configs', 
                 iconType: '', 
                 icon: '',
@@ -49,7 +49,7 @@ export const ROUTES: SideNavInterface[] = [
                 submenu: []
             },
             { 
-                path: '',
+                path: '/launch/list-configs',
                 title: 'See Launch Configs', 
                 iconType: '', 
                 icon: '',

@@ -15,7 +15,6 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NgChartjsModule } from 'ng-chartjs';
 import { NgxEchartsModule } from 'ngx-echarts';
-import { Bar3dDatasetComponent } from './components/bar3d.component';
 
 
 /** Assign all ng-zorro modules to this array*/
@@ -48,8 +47,7 @@ const antdModule = [
     ],
     exports: [],
     declarations: [
-        DashboardComponent,
-        Bar3dDatasetComponent
+        DashboardComponent
     ]
 })
 export class DashboardModule { }
