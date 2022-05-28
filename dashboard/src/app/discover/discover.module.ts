@@ -14,6 +14,9 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NgChartjsModule } from 'ng-chartjs';
+import { NgxEchartsModule } from 'ngx-echarts';
+import { Bar3dDatasetComponent } from './components/bar3d.component';
+
 
 /** Assign all ng-zorro modules to this array*/
 const antdModule = [
@@ -33,11 +36,20 @@ const antdModule = [
         SharedModule,
         DashboardRoutingModule,
         NgChartjsModule,
+        NgxEchartsModule.forRoot({
+            /**
+             * This will import all modules from echarts.
+             * If you only need custom modules,
+             * please refer to [Custom Build] section.
+             */
+            echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
+          }),
         ...antdModule
     ],
     exports: [],
     declarations: [
-        DashboardComponent
+        DashboardComponent,
+        Bar3dDatasetComponent
     ]
 })
 export class DashboardModule { }

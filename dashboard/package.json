@@ -27,6 +27,7 @@
     "chart.js": "^2.9.4",
     "date-fns": "^2.16.1",
     "echarts": "^5.3.2",
+    "echarts-gl": "^2.0.9",
     "jquery": "^3.5.1",
     "ng-chartjs": "^0.2.1",
     "ng-zorro-antd": "^13.1.1",

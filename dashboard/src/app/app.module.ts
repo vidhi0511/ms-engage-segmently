@@ -16,8 +16,10 @@ import { CommonLayoutComponent } from './layouts/common-layout/common-layout.com
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 
 import { NgChartjsModule } from 'ng-chartjs';
+import { NgxEchartsModule } from 'ngx-echarts';
 import { ThemeConstantService } from './shared/services/theme-constant.service';
 import { CarSegmentConstantService } from './shared/services/car-segment-constant.service';
+import { SegmentDiscoverService } from './shared/services/segment-discover.service';
 
 registerLocaleData(en);
 
@@ -34,7 +36,15 @@ registerLocaleData(en);
         NzBreadCrumbModule,
         TemplateModule,
         SharedModule,
-        NgChartjsModule
+        NgChartjsModule,
+        NgxEchartsModule.forRoot({
+            /**
+             * This will import all modules from echarts.
+             * If you only need custom modules,
+             * please refer to [Custom Build] section.
+             */
+            echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
+          }),
     ],
     providers: [
         { 
@@ -46,7 +56,8 @@ registerLocaleData(en);
             useClass: PathLocationStrategy
         },
         ThemeConstantService,
-        CarSegmentConstantService
+        CarSegmentConstantService,
+        SegmentDiscoverService
     ],
     bootstrap: [AppComponent]
 })

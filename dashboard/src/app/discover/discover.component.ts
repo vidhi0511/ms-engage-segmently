@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CarSegmentConstantService } from '../shared/services/car-segment-constant.service';
 import { ThemeConstantService } from '../shared/services/theme-constant.service';
+import { EChartsOption } from 'echarts';
+import { SegmentDiscoverService } from "../shared/services/segment-discover.service";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'app-discover',
@@ -22,11 +27,69 @@ export class DashboardComponent implements OnInit {
     isNavOpen: boolean = false;
     carSegmentsData = this.carSegments.get()
     carSegmentSelected: any;
+    test3dOptions: any;
 
-    constructor(private carSegments : CarSegmentConstantService, private colorConfig:ThemeConstantService) {}
+    constructor(private carSegments : CarSegmentConstantService, private colorConfig:ThemeConstantService, private segmentDiscoverService:SegmentDiscoverService, private http: HttpClient) {}
 
     ngOnInit(): void { 
         this.carSegmentSelected = this.carSegmentsData[0]
+
+        this.test3dOptions = {
+              xAxis3D: {
+                type: 'category',
+              },
+              yAxis3D: {
+                type: 'category',
+              },
+              zAxis3D: {},
+              visualMap: {
+                max: 1e8,
+                dimension: 'Population',
+              },
+              dataset: {
+                dimensions: [
+                  'Income',
+                  'Life Expectancy',
+                  'Population',
+                  'Country',
+                  { name: 'Year', type: 'ordinal' },
+                ],
+                source: [
+                  [
+                  "Income",
+                  "Life Expectancy",
+                  "Population",
+                  "Country",
+                  "Year"
+                  ],
+                  [
+                  815,
+                  34.05,
+                  351014,
+                  "Australia",
+                  1800
+                  ],
+                  [
+                  1314,
+                  39,
+                  645526,
+                  "Canada",
+                  1800
+                  ]],
+              },
+              series: [
+                {
+                  type: 'bar3D',
+                  shading: 'lambert',
+                  encode: {
+                    x: 'Year',
+                    y: 'Country',
+                    z: 'Life Expectancy',
+                    tooltip: [0, 1, 2, 3, 4],
+                  },
+                },
+              ],
+            }
     }
 
     navToggler() {
@@ -153,5 +216,160 @@ export class DashboardComponent implements OnInit {
         maintainAspectRatio: false
     }
     customersChartType = 'doughnut';
+
+
+    // Sample ECharts
+    chartOption: EChartsOption = {
+        xAxis: {
+          type: 'category',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        },
+        yAxis: {
+          type: 'value',
+        },
+        series: [
+          {
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: 'line',
+          },
+        ],
+      };
+    
+    // Price Distribution - BOX PLOT
+    priceDistribution: EChartsOption = {
+        title: [
+          {
+            text: 'Price Distribution Across Varients',
+            left: 'center'
+          }
+          
+        ],
+        dataset: [
+          {
+            // prettier-ignore
+            source: [
+              [850, 740, 900, 1070, 930, 850, 950, 980, 980, 880, 1000, 980, 930, 650, 760, 810, 1000, 1000, 960, 960],
+              [960, 940, 960, 940, 880, 800, 850, 880, 900, 840, 830, 790, 810, 880, 880, 830, 800, 790, 760, 800],
+              [880, 880, 880, 860, 720, 720, 620, 860, 970, 950, 880, 910, 850, 870, 840, 840, 850, 840, 840, 840],
+              [890, 810, 810, 820, 800, 770, 760, 740, 750, 760, 910, 920, 890, 860, 880, 720, 840, 850, 850, 780],
+              [890, 840, 780, 810, 760, 810, 790, 810, 820, 850, 870, 870, 810, 740, 810, 940, 950, 800, 810, 870]
+            ]
+          },
+          {
+            transform: {
+              type: 'boxplot',
+              config: { itemNameFormatter: function (params) {
+                return ["Make 11","Make 12","Make 3","Make 4","Make 5"][params.value];
+                } },
+            }
+          },
+           // After this "boxplot transform" two result data generated:
+            // result[0]: The boxplot data
+            // result[1]: The outlier data
+            // By default, when series or other dataset reference this dataset,
+            // only result[0] can be visited.
+            // If we need to visit result[1], we have to use another dataset
+            // as follows:
+          {
+            fromDatasetIndex: 1,
+            fromTransformResult: 1
+          }
+        ],
+        tooltip: {
+          trigger: 'item',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
+        grid: {
+          left: '10%',
+          right: '10%',
+          bottom: '15%'
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: true,
+          nameGap: 30,
+          splitArea: {
+            show: false
+          },
+          splitLine: {
+            show: false
+          }
+        },
+        yAxis: {
+          type: 'value',
+          name: 'Price (in INR)',
+          splitArea: {
+            show: true
+          }
+        },
+        series: [
+          {
+            name: 'boxplot',
+            type: 'boxplot',
+            datasetIndex: 1
+          },
+          {
+            name: 'outlier',
+            type: 'scatter',
+            datasetIndex: 2
+          }
+        ]
+      }
+
+    // Cluster Distribution - BOX PLOT
+    clusterDistribution: EChartsOption = {
+      grid3D: {},
+      xAxis3D: {
+        type: 'category'
+      },
+      yAxis3D: {},
+      zAxis3D: {},
+      dataset: {
+        dimensions: [
+          'Income',
+          'Life Expectancy',
+          'Population',
+          'Country',
+          { name: 'Year', type: 'ordinal' }
+        ],
+        source: [
+          [
+          "Income",
+          "Life Expectancy",
+          "Population",
+          "Country",
+          "Year"
+          ],
+          [
+          815,
+          34.05,
+          351014,
+          "Australia",
+          1800
+          ],
+          [
+          1314,
+          39,
+          645526,
+          "Canada",
+          1800
+          ]
+        ]
+      },
+      series: [
+        {
+          type: 'scatter3D',
+          symbolSize: 2.5,
+          encode: {
+            x: 'Country',
+            y: 'Life Expectancy',
+            z: 'Income',
+            tooltip: [0, 1, 2, 3, 4]
+          }
+        }
+      ]
+    }
 
 }

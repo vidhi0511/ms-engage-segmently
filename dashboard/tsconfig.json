@@ -3,6 +3,14 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "echarts": [
+          "node_modules/echarts/dist/echarts.min.js"
+      ],
+     "echarts-gl": [
+         "node_modules/echarts-gl/dist/echarts-gl.min.js"
+     ]
+    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
