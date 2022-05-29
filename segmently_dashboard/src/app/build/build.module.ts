@@ -1,10 +1,10 @@
+//Importing all the required modules
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { BuildRoutingModule } from "./build-routing.module";
 import { ReactiveFormsModule } from '@angular/forms';
 
-/** Import any ng-zorro components as the module required except icon module */
-
+//Importing modules of Ng-zorro
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
@@ -27,13 +27,15 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
 
 import { NgChartjsModule } from 'ng-chartjs';
 import { NgxEchartsModule } from 'ngx-echarts';
+
+//Importing ListBuildConfigComponent and AddBuildConfigComponent
 import { ListBuildConfigComponent } from './list-build-configs/list-build-config.component';
 import { AddBuildConfigComponent } from './add-build-config/add-build-config.component';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-import { NzBadgeModule } from 'ng-zorro-antd/badge';
 
 
 

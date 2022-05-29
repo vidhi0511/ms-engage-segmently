@@ -8,6 +8,8 @@ import { NzIconService } from 'ng-zorro-antd/icon';
 export class ListBuildConfigComponent {
     buildConfigSelected: any;
     isNavOpen: boolean = false;
+
+    // List of all saved build configurations
     buildConfigsList = [
         {
             "name": "Alpha Base Varient BX",

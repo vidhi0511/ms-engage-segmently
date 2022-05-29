@@ -6,6 +6,9 @@
         <nz-card nzTitle="Basic Information">
             <div class="col-md-12">
                 <nz-form-item>
+
+                    <!-- dropdown menu which will render the user to choose a segment from the given choises -->
+
                     <nz-form-label nzFor="selectSegment" nzRequired>Segment</nz-form-label>
                     <nz-form-control>
                         <nz-select class="w-100" formControlName="selectSegment" nzPlaceHolder="Select Segment">
@@ -16,6 +19,7 @@
             </div>
             <div class="col-md-12">
                 <nz-form-item>
+                    <!-- Adding custom name to the configuration -->
                     <nz-form-label nzFor="buildName" nzRequired>Enter Build Configuration Name</nz-form-label>
                     <nz-form-control nzErrorTip="Please enter a build configuration name!">
                     <input formControlName="buildName" nz-input placeholder="Your Build Configuration Name">
@@ -43,12 +47,14 @@
             </div>
         </nz-card>
         <ng-template #randomData>
+            <!-- This button will fill random data in every input field -->
             <a nz-button nzType="secondary" (click)="fillRandomData()">Fill Random Data</a>
         </ng-template>
         <nz-card>
             <div class="col-md-4 offset-md-4">
                 <nz-form-item>
                     <nz-form-control>
+                        <!-- Form submit button, which will remain disabled until all the required fields are filled by the user -->
                         <button style="width:100%;" nz-button nzType="primary" [disabled]="!addNewBuildConfigFormGroup.valid">Submit</button>
                     </nz-form-control>
                 </nz-form-item>

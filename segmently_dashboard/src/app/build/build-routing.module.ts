@@ -6,6 +6,7 @@ import { ListBuildConfigComponent } from './list-build-configs/list-build-config
 
 const routes: Routes = [
     {
+        //Adding route of AddBuildConfigComponent
         path: 'add-config',
         component: AddBuildConfigComponent,
         data: {
@@ -14,6 +15,7 @@ const routes: Routes = [
         }
     },
     {
+        //Adding route of ListBuildConfigComponent
         path: 'list-configs',
         component: ListBuildConfigComponent,
         data: {
