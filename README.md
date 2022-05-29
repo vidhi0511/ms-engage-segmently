@@ -1,6 +1,6 @@
 # Segmently - Better way to understand your customer segments
 
-![Alt text](assets/logo/Segmently.png?raw=true "Segmently Logo")
+![Alt text](assets/logo/Segmently.jpg?raw=true "Segmently Logo")
 
 ## Microsoft Engage 2022 | Data Analysis
 
