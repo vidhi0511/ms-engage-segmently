@@ -1,64 +1,91 @@
+# Segmently -  Better way to understand your customer segments!
 
-# Dashboard
+## Microsoft Engage 2022 | Data Analysis
 
- ## Step 1: Discover
-The discover page would offer the user attractive data visualization (like sales data, price data, etc.) on a monthly and yearly basis.
+## The Challenge 
 
-- The user can select any segment of choice by clicking on the buttons on the sub sidebar.
+Develop an application to demonstrate how the Automotive Industry could harness data to make informed decisions.
+Demonstrate the use of data analytics in identifying:
+- Customer segments
+- Most popular car specification combination (engine type, fuel, mileage , etc.)
+- Right time to launch a new car, etc.
 
-      Segments available for choice :
+## User Problem Understanding 👩‍💻
+
+The user is an automotive OEM (Original Equipment Manufacturer). He wants to gain an understanding of the following pain points:
+- Which new car to position in the market for the target audience and what should be the expected sales?
+    - Should a car be positioned in a Mid SUV range and at what price?
+- What updates to launch in the existing car models at a variant level or as a revamp? For example:
+    - Tata Harrier would like to check whether adding a petrol variant will increase the sales
+    - Hyundai Santro would like to check if they should revamp or upgrade features at variant
+
+
+## Agile Development Methodology 🎯
+- I have divided the program into three weekly sprints with one epic for each sprint
+- For the first sprint, the epic is to create a working data science pipeline to meet the requirements of the user problem
+- For the second sprint, the epic is to create a working dashboard which will give access to the OEMs to access the dashboard & make queries
+- For the third sprint, the epic is to create a dockerized container with the database which can host end to end solution
+
+
+
+## Instructions to run the model: 
+
+-  Main Requirement is Angular CLI. The Angular CLI is a command-line interface tool that is used to initialize, develop, scaffold, and maintain Angular applications directly from a command shell.
+
+    - ### Step 1: Clone this Repository
+        - ```git clone https://github.com/vidhi0511/ms-engage-segmently```
+
         
-        Car A: Hatchbacks
+  
+    - ### Step 2: Installation
 
-        Car B: Premium Hatchbacks
+        - #### Install nodejs
 
-        Car C: Compact Sedan
+            For Linux and macOS
 
-        Car D: Premium Sedan
+            ```sudo apt install nodejs```
 
-        SUV A: Compact Sub-4-meter SUV
+            ```sudo apt install npm```
+         
+            ```node -v```
 
-        SUV B : Premium Sub-4-meter SUV
+            For Windows
 
-        SUV C: Compact SUV
+            - Go to https://nodejs.org/en/download/
 
-        SUV D: Premium SUV
 
-        MPV: Multi-Purpose Vehicle
+        - #### Install AngularCLI
+            ```npm install -g @angular/cli```
 
-- After selection, the graphical representation of the data will render the user to get an insight into the data.
+             ```ng --version```
+        
+        - #### Install Pandas
+            ```pip install pandas```
 
-- After analysing the data, the user can move forward to create the build configuration.
-    
+    - ### Step 3: Move to the directory
+         ```cd <path_of_the_directory>```
 
+    - ### Step 4: Run the server
+         ```ng serve```
   
 
- ## Step 2: Build
-- Add build configuration
-
-
-    The user can choose and add features to the car configuration and save it.
-
-- Saved build configuration
-
-    The saved build configurations will be displayed here. User can edit the saved configuration(s) and add or delete the feature(s) of choice.
-
-
- ## Step 3: Launch
-
- This page will render the user launch data ,i.e., Sales estimation of the build, the best time to launch, etc.
+# Block Diagram 
 
 
 
- ### Sales Estimation Algorithm
+# Tech Stack 
 
 
- #### Linear Regression
- 
- Linear Regression is a machine learning algorithm based on supervised learning. Regression models a target prediction value based on independent variables. It is used for finding out the relationship between variables and forecasting. Different regression models differ based on – the type of relationship between dependent and independent variables , and the number of independent variables used.
 
- This algorithm will be used to estimate sales using features and prices of the car at the make-model level.
+# PYTHON LIBRARIES USED:👾
+In our Image Processing model, we used the following libraries: 
+-  
+-  Numpy
+-  Pandas
+-  
+-  
 
- 
 
- 
+# FUTURE SCOPE:🤖
+
+
