@@ -9,8 +9,7 @@
                     <nz-form-label nzFor="selectSegment" nzRequired>Segment</nz-form-label>
                     <nz-form-control>
                         <nz-select class="w-100" formControlName="selectSegment" nzPlaceHolder="Select Segment">
-                            <nz-option nzValue="CarA" nzLabel="Car A"></nz-option>
-                            <nz-option nzValue="CarB" nzLabel="Car B"></nz-option>
+                            <nz-option *ngFor="let carSegment of carSegmentsData" nzValue="{{carSegment.value}}" nzLabel="{{carSegment.label}}"></nz-option>
                         </nz-select>
                     </nz-form-control>
                 </nz-form-item>

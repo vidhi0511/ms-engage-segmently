@@ -4,7 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 @Injectable()
 export class CarSegmentConstantService {
     
-    private carSegemnts: any = [
+    private carSegements: any = [
         { 
             label: 'Car A', 
             value: 'Car A', 
@@ -72,7 +72,7 @@ export class CarSegmentConstantService {
     ];
 
     get() {
-        return this.carSegemnts;
+        return this.carSegements;
     }
 }
 

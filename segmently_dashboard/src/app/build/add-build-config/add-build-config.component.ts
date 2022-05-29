@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NzIconService } from 'ng-zorro-antd/icon';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppsService } from "../../shared/services/apps.service";
+import { CarSegmentConstantService } from 'src/app/shared/services/car-segment-constant.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
     selector: 'add-build-config',
@@ -12,10 +14,21 @@ export class AddBuildConfigComponent {
     selectSegment: any;
     featuresFormConfigs: any;
     isFormConfigLoaded:boolean = false;
-    constructor(private fb: FormBuilder, private appService: AppsService) {}
+    constructor(private fb: FormBuilder, private appService: AppsService, private carSegmentConstantService: CarSegmentConstantService, private message: NzMessageService) {}
+
+    carSegmentsData = this.carSegmentConstantService.get()
 
     submitForm(): void {
-       console.log("Submitted") 
+        let config_data = this.addNewBuildConfigFormGroup.getRawValue()
+        let selectSegment = config_data['selectSegment']
+        let buildName = config_data['buildName']
+        delete config_data['selectSegment']
+        delete config_data['buildName']
+        this.message.info('Saving Build Configuration. Kindly wait...')
+        this.appService.createBuildConfigData(buildName,selectSegment,config_data).subscribe(data => {
+            console.log(data)
+            this.message.success('Build Configuration Created Successfully!')
+        })
     }
 
     ngOnInit(): void {

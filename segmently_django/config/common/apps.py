@@ -25,5 +25,7 @@ INSTALLED_APPS += [
 INSTALLED_APPS += [
     'app_core.base_model',
     # User App
-    'app_users.custom_auth'
+    'app_users.custom_auth',
+    # Core Apps
+    'app_core.build_configs'
 ]

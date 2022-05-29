@@ -11,7 +11,7 @@ class DisableCsrfCheck(MiddlewareMixin):
 MIDDLEWARE = [
 	'django.middleware.security.SecurityMiddleware',
 	'django.contrib.sessions.middleware.SessionMiddleware',
-	# Custom Middleware to Disable CSRF Check
+	'corsheaders.middleware.CorsMiddleware',
 	'config.common.middleware.DisableCsrfCheck',
 	'reversion.middleware.RevisionMiddleware',
 	'django.middleware.common.CommonMiddleware',

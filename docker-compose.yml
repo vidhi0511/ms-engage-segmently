@@ -39,7 +39,7 @@ services:
       bash -c "chmod a+x ./run.sh
       && ./run.sh"
     ports:
-      - 8000:80
+      - 8000:8000
     environment:
       DOCKER: docker
     depends_on:
@@ -55,7 +55,7 @@ services:
     build: ./segmently_dashboard
     restart: always
     ports:
-      - 8080:8080
+      - 8080:80
     networks:
       all:
         ipv4_address: 172.16.238.5
