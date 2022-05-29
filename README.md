@@ -20,6 +20,9 @@ The user is an automotive OEM (Original Equipment Manufacturer). He wants to gai
     - Hyundai Santro would like to check if they should revamp or upgrade features at variant
 
 
+
+
+
 ## Agile Development Methodology 🎯
 - I have divided the program into three weekly sprints with one epic for each sprint
 - For the first sprint, the epic is to create a working data science pipeline to meet the requirements of the user problem
@@ -69,15 +72,13 @@ The user is an automotive OEM (Original Equipment Manufacturer). He wants to gai
          ```ng serve```
   
 
-# Block Diagram 
+## Software Architecture
 
 
-
-# Tech Stack 
-
+<img width="1134" alt="Screenshot 2022-05-29 at 11 38 13 AM" src="https://user-images.githubusercontent.com/73902102/170864642-91c9ed83-73c8-4f36-81c8-234944c12a6f.png">
 
 
-# PYTHON LIBRARIES USED:👾
+## PYTHON LIBRARIES USED:👾
 In our Image Processing model, we used the following libraries: 
 -  
 -  Numpy
@@ -86,6 +87,6 @@ In our Image Processing model, we used the following libraries:
 -  
 
 
-# FUTURE SCOPE:🤖
+## FUTURE SCOPE:🤖
 
 
