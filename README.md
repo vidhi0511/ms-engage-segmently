@@ -4,6 +4,9 @@
 
 ## Microsoft Engage 2022 | Data Analysis
 
+![Alt text](assets/Dashboard.png?raw=true "Dashboard")
+
+
 ## The Challenge 
 
 Develop an application to demonstrate how the Automotive Industry could harness data to make informed decisions.
@@ -22,74 +25,91 @@ The user is an automotive OEM (Original Equipment Manufacturer). He wants to gai
     - Hyundai Santro would like to check if they should revamp or upgrade features at variant
 
 
-
-
-
 ## Agile Development Methodology 🎯
 - I have divided the program into three weekly sprints with one epic for each sprint
 - For the first sprint, the epic is to create a working data science pipeline to meet the requirements of the user problem
 - For the second sprint, the epic is to create a working dashboard which will give access to the OEMs to access the dashboard & make queries
 - For the third sprint, the epic is to create a dockerized container with the database which can host end to end solution
 
+## Solution Architecture
+
+![Alt text](assets/architecture/Architecture.png?raw=true "Solution Architecture Diagram")
+
+-  JupyterNotebook is used for doing the Data Analysis where we have leverage Clustering and Regression Algorithms
+-  JupyterNotebook is connected with Django ORM Layer with Pickle files for getting the trained instances of Scaler, PCA (Principal Component Analysis) & K-Means
+-  JupterNotebook is also connected using Django REST APIs to send the updated aggregated insights over APIs 
+-  Django is used with MongoDB. The key reason to use Django is that it can work on 'pickle' files
+-  MongoDB provides a very good database to put a lot of unstructured data coming from analytics pipeline
+-  Angular application is used at the frontend for providing user with a solution framework 
+-  Angular application also leverages REST APIs from Django
+-  Docker & NGinx helps in better orchestration of the complete solution
+-  Redis is added in the last sprint to handle the queue management in seprate thread for data analytics pipeline
+
+## Getting Started
+
+### Pre-requisities
+
+- Docker (Tested on Docker version 20.10.14)
+- Docker Compose (Tested on Docker Compose version v2.5.1)
+
+### Installation steps
+
+It will just take one step to run the project after cloning it :-)
+
+```
+./run.sh
+```
+Kindly note that all builds are done in the `Dockerfile` so the installation is easy, but the build process, specially for Angular application will take some time as it is two stage docker image based orchestration
+
+### (Optional) Installation Steps for JupyterNotebook (jupyter-data-analysis): 
+
+```
+cd ./jupyter-data-analysis
+pip install -r requirements
+jupyter notebook
+```
+
+### (Optional) Installation Steps for Django (segmently_django): 
+There are two instances which have to be executed for Django 
+
+- Django Main
+Pre-requisites: MongoDB should be running in local
+```
+cd ./segmently_django
+pip install -r requirements
+python manage.py runserver
+```
+
+- Django Huey (Consumer)
+Pre-requisites: Redis should be running in local
+
+```
+cd ./segmently_django
+python manage.py run_huey
+```
 
 
-## Instructions to run the model: 
-
--  Main Requirement is Angular CLI. The Angular CLI is a command-line interface tool that is used to initialize, develop, scaffold, and maintain Angular applications directly from a command shell.
-
-    - ### Step 1: Clone this Repository
-        - ```git clone https://github.com/vidhi0511/ms-engage-segmently```
-
-        
-  
-    - ### Step 2: Installation
-
-        - #### Install nodejs
-
-            For Linux and macOS
-
-            ```sudo apt install nodejs```
-
-            ```sudo apt install npm```
-         
-            ```node -v```
-
-            For Windows
-
-            - Go to https://nodejs.org/en/download/
+### (Optional) Installation Steps for Angular (segmently_dashboard): 
 
 
-        - #### Install AngularCLI
-            ```npm install -g @angular/cli```
+Pre-reqisites: NodeJS
 
-             ```ng --version```
-        
-        - #### Install Pandas
-            ```pip install pandas```
-
-    - ### Step 3: Move to the directory
-         ```cd <path_of_the_directory>```
-
-    - ### Step 4: Run the server
-         ```ng serve```
-  
-
-## Software Architecture
+```
+cd ./segmently_dashboard
+npm start
+```
 
 
-<img width="1134" alt="Screenshot 2022-05-29 at 11 38 13 AM" src="https://user-images.githubusercontent.com/73902102/170864642-91c9ed83-73c8-4f36-81c8-234944c12a6f.png">
+## Key Features of the Solution:👾
+- `K-Means Clustering` algorithm based on `Principal Component Analysis` (which reduces 130+ features/dimension to 3 key features/dimension)
+- End to end integration with `Django REST APIs` which funnels insights from Jupyter to Angular dashboard
+- Use of `MongoDB` to keep 
+- Use of `Redis` to queue the job task for processing data science pipeline on new data configuration
+- Use of `Pickle` files to transfer trained model functions from Jupyter to Django to `predict` on the data set training `fit` 
+- Use of `Docker-Compose` to make the orchestraion simple
 
-
-## PYTHON LIBRARIES USED:👾
-In our Image Processing model, we used the following libraries: 
--  
--  Numpy
--  Pandas
--  
--  
 
 
 ## FUTURE SCOPE:🤖
 
 
-![Alt text](assets/architecture/Architecture.png?raw=true "Solution Architecture Diagram")
