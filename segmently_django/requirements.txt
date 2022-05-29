@@ -38,6 +38,7 @@ pytz==2017.3
 PyYAML==3.13
 requests==2.18.4
 Rx==1.6.1
+redis==4.3.1
 simplejson==3.13.2
 singledispatch==3.4.0.3
 six==1.11.0
