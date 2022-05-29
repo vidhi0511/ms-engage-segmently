@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NzIconService } from 'ng-zorro-antd/icon';
+import { AppsService } from 'src/app/shared/services/apps.service';
+import { CarSegmentConstantService } from 'src/app/shared/services/car-segment-constant.service';
 
 @Component({
     selector: 'list-build-config',
@@ -8,26 +10,23 @@ import { NzIconService } from 'ng-zorro-antd/icon';
 export class ListBuildConfigComponent {
     buildConfigSelected: any;
     isNavOpen: boolean = false;
+    carSegmentsData = this.carSegments.get()
+
+    // List of all saved build configurations
     buildConfigsList = [
-        {
-            "name": "Alpha Base Varient BX",
-            "created_on": "test",
-            "features": [],
-            "svg": "vehicles:coupe"
-        },
-        {
-            "name": "Alpha Base Varient BZ",
-            "created_on": "test",
-            "features": [],
-            "svg": "vehicles:coupe"
-        }
     ]
-    constructor( private _iconService: NzIconService) {
+    constructor( private appsService:AppsService, private carSegments : CarSegmentConstantService) {
             
     }
 
     ngOnInit(): void { 
-        this.buildConfigSelected = this.buildConfigsList[0]
+        
+        this.appsService.getAllBuildConfigs().subscribe((data)=>{
+            this.buildConfigsList = data.results
+            this.buildConfigSelected = this.buildConfigsList[0]
+            console.log(this.buildConfigSelected)
+          })
+        
     }
 
     public buildConfigChange(index){

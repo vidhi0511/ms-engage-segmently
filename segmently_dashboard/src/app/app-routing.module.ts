@@ -14,11 +14,13 @@ const appRoutes: Routes = [
         pathMatch: 'full',
     },
     { 
+        //Adding route of CommonLayoutComponent
         path: '', 
         component: CommonLayoutComponent,
         children: CommonLayout_ROUTES 
     },
     { 
+        //Adding route of FullLayoutComponent
         path: '', 
         component: FullLayoutComponent, 
         children: FullLayout_ROUTES
