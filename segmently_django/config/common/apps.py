@@ -28,5 +28,6 @@ INSTALLED_APPS += [
     # User App
     'app_users.custom_auth',
     # Core Apps
-    'app_core.build_configs'
+    'app_core.build_configs',
+    'app_core.discover_insights',
 ]

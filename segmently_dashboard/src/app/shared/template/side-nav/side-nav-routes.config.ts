@@ -33,29 +33,29 @@ export const ROUTES: SideNavInterface[] = [
             }
         ]
     },
-    {
-        path: '',
-        title: 'Launch',
-        iconType: 'nzIcon',
-        iconTheme: 'outline',
-        icon: 'appstore',
-        submenu: [
-            { 
-                path: '/launch/add-config',
-                title: 'Add Launch Configs', 
-                iconType: '', 
-                icon: '',
-                iconTheme: '',
-                submenu: []
-            },
-            { 
-                path: '/launch/list-configs',
-                title: 'See Launch Configs', 
-                iconType: '', 
-                icon: '',
-                iconTheme: '',
-                submenu: []
-            }
-        ]
-    }
+    // {
+    //     path: '',
+    //     title: 'Launch',
+    //     iconType: 'nzIcon',
+    //     iconTheme: 'outline',
+    //     icon: 'appstore',
+    //     submenu: [
+    //         { 
+    //             path: '/launch/add-config',
+    //             title: 'Add Launch Configs', 
+    //             iconType: '', 
+    //             icon: '',
+    //             iconTheme: '',
+    //             submenu: []
+    //         },
+    //         { 
+    //             path: '/launch/list-configs',
+    //             title: 'See Launch Configs', 
+    //             iconType: '', 
+    //             icon: '',
+    //             iconTheme: '',
+    //             submenu: []
+    //         }
+    //     ]
+    // }
 ]    

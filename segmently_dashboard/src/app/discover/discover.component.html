@@ -1,7 +1,7 @@
 <div class="page-header">
     <div class="d-md-flex align-items-md-center justify-content-between">
         <div class="media m-v-10 align-items-center">
-            <nz-avatar nzIcon="user" [nzSize]="50" nzSrc="assets/images/avatars/thumb-3.jpg"></nz-avatar>
+            <nz-avatar nzIcon="user" [nzSize]="50" nzSrc="assets/images/avatars/thumb-1.webp"></nz-avatar>
             <div class="media-body m-l-15">
                 <h4 class="m-b-0">Welcome Admin!</h4>
                 <span class="text-gray">Automotive OEM</span>
@@ -15,15 +15,6 @@
                 <div class="d-flex align-items-center m-l-10">
                     <h2 class="m-b-0 m-r-5">6</h2>
                     <span class="text-gray">Builds Configs Created</span>
-                </div>
-            </div>
-            <div class="media align-items-center m-r-40 m-v-5">
-                <div class="font-size-27">
-                    <i class="text-success" nz-icon nzType="appstore" theme="outline"></i>
-                </div>
-                <div class="d-flex align-items-center m-l-10">
-                    <h2 class="m-b-0 m-r-5">4</h2>
-                    <span class="text-gray">Launch Configs Created</span>
                 </div>
             </div>
         </div>
@@ -74,10 +65,10 @@
                 <div class="col-md-6 col-lg-3">
                     <nz-card>
                         <div class="media align-items-center">
-                            <nz-avatar [nzSize]="60" nzIcon="dollar" class="ant-avatar-blue"  ></nz-avatar>
+                            <nz-avatar [nzSize]="60" nzIcon="line-chart" class="ant-avatar-blue"  ></nz-avatar>
                             <div class="m-l-15">
-                                <h2 class="m-b-0">$23,523</h2>
-                                <p class="m-b-0 text-muted">Annual Sales</p>
+                                <h2 class="m-b-0">{{segmentDashboardData.kpi_data.average_monthly_sales}}</h2>
+                                <p class="m-b-0 text-muted">Average Monthly Sales (Units)</p>
                             </div>
                         </div>
                     </nz-card>
@@ -85,10 +76,10 @@
                 <div class="col-md-6 col-lg-3">
                     <nz-card>
                         <div class="media align-items-center">
-                            <nz-avatar [nzSize]="50" nzIcon="line-chart" class="ant-avatar-cyan"  ></nz-avatar>
+                            <nz-avatar [nzSize]="50" nzIcon="dollar" class="ant-avatar-cyan"  ></nz-avatar>
                             <div class="m-l-15">
-                                <h2 class="m-b-0">+ 17.21%</h2>
-                                <p class="m-b-0 text-muted">Average Price</p>
+                                <h2 class="m-b-0">{{segmentDashboardData.kpi_data.average_price  | number}}</h2>
+                                <p class="m-b-0 text-muted">Average Price (in INR)</p>
                             </div>
                         </div>
                     </nz-card>
@@ -98,8 +89,8 @@
                         <div class="media align-items-center">
                             <nz-avatar [nzSize]="50" nzIcon="profile" class="ant-avatar-gold"  ></nz-avatar>
                             <div class="m-l-15">
-                                <h2 class="m-b-0">3,685</h2>
-                                <p class="m-b-0 text-muted">Price Std Dev</p>
+                                <h2 class="m-b-0">{{segmentDashboardData.kpi_data.std_price  | number}}</h2>
+                                <p class="m-b-0 text-muted">Price Std Dev (in INR)</p>
                             </div>
                         </div>
                     </nz-card>
@@ -107,9 +98,9 @@
                 <div class="col-md-6 col-lg-3">
                     <nz-card>
                         <div class="media align-items-center">
-                            <nz-avatar [nzSize]="50" nzIcon="user" class="ant-avatar-purple"  ></nz-avatar>
+                            <nz-avatar [nzSize]="50" nzIcon="car" class="ant-avatar-purple"  ></nz-avatar>
                             <div class="m-l-15">
-                                <h2 class="m-b-0">1,832</h2>
+                                <h2 class="m-b-0">{{segmentDashboardData.kpi_data.no_of_variants  | number}}</h2>
                                 <p class="m-b-0 text-muted">Variants Available</p>
                             </div>
                         </div>
@@ -146,7 +137,7 @@
                 </div>
                 <div class="col-md-12 col-lg-6">
                     <nz-card>
-                        <h5 class="m-b-0">% Sales Against other Segments</h5>
+                        <h5 class="m-b-0">% Lifetime Sales Against other Segments</h5>
                         <div class="m-v-60 text-center" style="height: 200px">
                             <canvas ngChartjs 
                                 [data]="customersChartData" 
@@ -158,35 +149,24 @@
                             </canvas>
                         </div>
                         <div class="row border-top p-t-25">
-                            <div class="col-4">
+                            <div class="col-6">
                                 <div class="d-flex justify-content-center">
                                     <div class="media align-items-center">
                                         <nz-badge nzStatus="default" [nzColor]="cyan"></nz-badge>
                                         <div class="m-l-5">
-                                            <h4 class="m-b-0">350</h4>
-                                            <p class="m-b-0 muted">New</p>
+                                            <h4 class="m-b-0">{{segmentDashboardData.graph_data.sales_contribution.current_segment| number}}</h4>
+                                            <p class="m-b-0 muted">{{carSegmentSelected.lable}} Segment</p>
                                         </div>    
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <div class="d-flex justify-content-center">
                                     <div class="media align-items-center">
                                         <nz-badge nzStatus="default" [nzColor]="purple"></nz-badge>
                                         <div class="m-l-5">
-                                            <h4 class="m-b-0">450</h4>
-                                            <p class="m-b-0 muted">Returning</p>
-                                        </div>    
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="d-flex justify-content-center">
-                                    <div class="media align-items-center">
-                                        <nz-badge nzStatus="default" [nzColor]="gold"></nz-badge>
-                                        <div class="m-l-5">
-                                            <h4 class="m-b-0">100</h4>
-                                            <p class="m-b-0 muted">Others</p>
+                                            <h4 class="m-b-0">{{segmentDashboardData.graph_data.sales_contribution.other_segments | number}}</h4>
+                                            <p class="m-b-0 muted">Other Segments</p>
                                         </div>    
                                     </div>
                                 </div>
@@ -199,24 +179,14 @@
             <div class="m-l-20">
                 <h4 class="font-weight-normal m-b-10">{{carSegmentSelected.label}} Price Distribution</h4>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12" *ngIf="!iseChartsLoading">
                         <nz-card>
                             <echarts [options]="priceDistribution" class="demo-chart"></echarts>
                         </nz-card>
                     </div>
                 </div>
             </div>
-            <!-- PART 4: Features Based Clusters for Car A -->
-            <div class="m-l-20">
-                <h4 class="font-weight-normal m-b-10">{{carSegmentSelected.label}} Clusters Based On Features</h4>
-                <div class="row">
-                    <div class="col-md-12">
-                        <nz-card>
-                            
-                        </nz-card>
-                    </div>
-                </div>
-            </div>
+           
             <!-- PART 5: All Model Variant Data Table -->
             <div class="row">
                 <div class="col-md-12">

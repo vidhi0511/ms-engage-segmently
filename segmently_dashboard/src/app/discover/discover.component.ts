@@ -24,10 +24,12 @@ export class DashboardComponent implements OnInit {
     purpleLight = this.themeColors.purpleLight;
     red = this.themeColors.red;
 
+    iseChartsLoading: boolean = false;
     isNavOpen: boolean = false;
     carSegmentsData = this.carSegments.get()
     carSegmentSelected: any;
     test3dOptions: any;
+    segmentDashboardData: any;
 
     constructor(private carSegments : CarSegmentConstantService, private colorConfig:ThemeConstantService, private segmentDiscoverService:SegmentDiscoverService, private http: HttpClient) {}
 
@@ -90,6 +92,9 @@ export class DashboardComponent implements OnInit {
                 },
               ],
             }
+        
+        this.segmentDataFetch()
+
     }
 
     navToggler() {
@@ -98,19 +103,44 @@ export class DashboardComponent implements OnInit {
 
     public segmentChange(index){
         this.carSegmentSelected = this.carSegmentsData[index]
+        this.segmentDataFetch()
     }
 
-
+    public segmentDataFetch(){
+      this.segmentDiscoverService.getSegmentWiseDasbboardData(this.carSegmentSelected).subscribe((data)=>{
+        this.segmentDashboardData = data["results"][0]
+        console.log(this.segmentDashboardData)
+        this.createSalesGraph()
+        this.createSalesPieChart()
+        this.makePriceDistributionGraph()
+      })
+    }
 
     // Charts
     revenueChartFormat: string = 'revenueMonth';
 
     revenueChartData: Array<any> = [{ 
-        data: [30, 60, 40, 50, 40, 55, 85, 65, 75, 50, 70],
+        data: [5337.8, 6464.1, 5716.4, 4496],
         label: 'Series A' 
     }];
     currentrevenueChartLabelsIdx = 1;
-    revenueChartLabels:Array<any> = ["16th", "17th", "18th", "19th", "20th", "21th", "22th", "23th", "24th", "25th", "26th"];
+    revenueChartLabels:Array<any> = ['2017-01-01', '2017-02-01', '2017-03-01', '2017-04-01'];
+
+    public createSalesGraph(){
+      let xAxis = []
+      let yAxis1 = []
+      for (let key in this.segmentDashboardData.graph_data.sales_time.mean_sales) {
+        let value = this.segmentDashboardData.graph_data.sales_time.mean_sales[key];
+        xAxis.push(key)
+        yAxis1.push(value)
+      }
+      this.revenueChartData = [{ 
+        data: yAxis1,
+        label: 'Mean' 
+      }];
+      this.revenueChartLabels = xAxis
+    }
+
     revenueChartOptions: any = {
         maintainAspectRatio: false,
         responsive: true,
@@ -143,8 +173,6 @@ export class DashboardComponent implements OnInit {
                 },
                 ticks: {
                     display: true,
-                    max: 100,                            
-                    stepSize: 20,
                     fontColor: this.themeColors.grayLight,
                     fontSize: 13,
                     padding: 10
@@ -205,11 +233,15 @@ export class DashboardComponent implements OnInit {
 
     // Pie Chart
 
-    customersChartLabels: string[] = ['New', 'Returning', 'Others'];
-    customersChartData: number[] = [350, 450, 100];
+    public createSalesPieChart(){
+      this.customersChartData = [this.segmentDashboardData.graph_data.sales_contribution.current_segment, this.segmentDashboardData.graph_data.sales_contribution.other_segments];
+    }
+
+    customersChartLabels: string[] = ['Selected Segment', 'Other Segments'];
+    customersChartData: number[] = [150, 450];
     customersChartColors: Array<any> =  [{ 
-        backgroundColor: [this.cyan, this.purple, this.gold],
-        pointBackgroundColor : [this.cyan, this.purple, this.gold]
+        backgroundColor: [this.cyan, this.purple],
+        pointBackgroundColor : [this.cyan, this.purple]
     }];
     customersChartOptions: any = {
         cutoutPercentage: 75,
@@ -235,6 +267,94 @@ export class DashboardComponent implements OnInit {
         ],
       };
     
+
+    public makePriceDistributionGraph(){
+      this.iseChartsLoading = true
+      let sourceArray = []
+      let categoryArray = []
+      for (let key in this.segmentDashboardData.graph_data.variant_price_distribution.price_distribution) {
+        sourceArray.push(this.segmentDashboardData.graph_data.variant_price_distribution.price_distribution[key])
+        categoryArray.push(key)
+      }
+      console.log(sourceArray)
+      console.log(categoryArray)
+      this.priceDistribution = {
+        title: [
+          {
+            text: 'Price Distribution Across Varients',
+            left: 'center'
+          }
+          
+        ],
+        dataset:  [
+          {
+            // prettier-ignore
+            source: sourceArray
+          },
+          {
+            transform: {
+              type: 'boxplot',
+              config: { itemNameFormatter: function (params) {
+                return categoryArray[params.value];
+                } },
+            }
+          },
+           // After this "boxplot transform" two result data generated:
+            // result[0]: The boxplot data
+            // result[1]: The outlier data
+            // By default, when series or other dataset reference this dataset,
+            // only result[0] can be visited.
+            // If we need to visit result[1], we have to use another dataset
+            // as follows:
+          {
+            fromDatasetIndex: 1,
+            fromTransformResult: 1
+          }
+        ],
+        tooltip: {
+          trigger: 'item',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
+        grid: {
+          left: '10%',
+          right: '10%',
+          bottom: '15%'
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: true,
+          nameGap: 30,
+          splitArea: {
+            show: false
+          },
+          splitLine: {
+            show: false
+          }
+        },
+        yAxis: {
+          type: 'value',
+          name: 'Price (in INR)',
+          splitArea: {
+            show: true
+          }
+        },
+        series: [
+          {
+            name: 'boxplot',
+            type: 'boxplot',
+            datasetIndex: 1
+          },
+          {
+            name: 'outlier',
+            type: 'scatter',
+            datasetIndex: 2
+          }
+        ]
+      }
+      this.iseChartsLoading = false
+    }
     // Price Distribution - BOX PLOT
     priceDistribution: EChartsOption = {
         title: [
@@ -318,58 +438,6 @@ export class DashboardComponent implements OnInit {
         ]
       }
 
-    // Cluster Distribution - BOX PLOT
-    clusterDistribution: EChartsOption = {
-      grid3D: {},
-      xAxis3D: {
-        type: 'category'
-      },
-      yAxis3D: {},
-      zAxis3D: {},
-      dataset: {
-        dimensions: [
-          'Income',
-          'Life Expectancy',
-          'Population',
-          'Country',
-          { name: 'Year', type: 'ordinal' }
-        ],
-        source: [
-          [
-          "Income",
-          "Life Expectancy",
-          "Population",
-          "Country",
-          "Year"
-          ],
-          [
-          815,
-          34.05,
-          351014,
-          "Australia",
-          1800
-          ],
-          [
-          1314,
-          39,
-          645526,
-          "Canada",
-          1800
-          ]
-        ]
-      },
-      series: [
-        {
-          type: 'scatter3D',
-          symbolSize: 2.5,
-          encode: {
-            x: 'Country',
-            y: 'Life Expectancy',
-            z: 'Income',
-            tooltip: [0, 1, 2, 3, 4]
-          }
-        }
-      ]
-    }
+    
 
 }
