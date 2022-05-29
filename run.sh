@@ -2,12 +2,12 @@
 
 
 # Remove Previous Docker Containers
-sudo docker-compose down
-sudo docker stop $(docker ps -q)
-echo "y" | sudo docker system prune
-echo "y" | sudo docker network prune
-sudo docker rm -f $(docker ps -a -q)
+docker-compose down
+docker stop $(docker ps -q)
+echo "y" | docker system prune
+echo "y" | docker network prune
+docker rm -f $(docker ps -a -q)
 
 # Create new docker container
-sudo docker-compose build
-sudo docker-compose up -d
+docker-compose build
+docker-compose up -d
