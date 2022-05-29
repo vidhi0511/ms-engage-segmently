@@ -1,5 +1,7 @@
 # Segmently - Better way to understand your customer segments
 
+![Alt text](assets/logo/Segmently.jpg?raw=true "Segmently Logo")
+
 ## Microsoft Engage 2022 | Data Analysis
 
 ## The Challenge
@@ -28,3 +30,4 @@ User is an automotive OEM (Original Equiment Manufacture). He wants to gain unde
 
 ## Solution Architecture
 
+![Alt text](assets/architecture/Architecture.png?raw=true "Solution Architecture Diagram")
