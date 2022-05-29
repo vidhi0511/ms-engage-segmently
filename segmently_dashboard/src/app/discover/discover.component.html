@@ -3,6 +3,7 @@
         <div class="media m-v-10 align-items-center">
             <nz-avatar nzIcon="user" [nzSize]="50" nzSrc="assets/images/avatars/thumb-3.jpg"></nz-avatar>
             <div class="media-body m-l-15">
+                <!-- This will show th details of the user like number of build and launch configurations the already have -->
                 <h4 class="m-b-0">Welcome Admin!</h4>
                 <span class="text-gray">Automotive OEM</span>
             </div>
@@ -13,6 +14,7 @@
                     <i class="text-primary" nz-icon nzType="profile" theme="outline"></i>
                 </div>
                 <div class="d-flex align-items-center m-l-10">
+                    <!-- Number of Launch configuration -->
                     <h2 class="m-b-0 m-r-5">6</h2>
                     <span class="text-gray">Builds Configs Created</span>
                 </div>
@@ -22,6 +24,7 @@
                     <i class="text-success" nz-icon nzType="appstore" theme="outline"></i>
                 </div>
                 <div class="d-flex align-items-center m-l-10">
+                    <!-- Number of Launch configuration -->
                     <h2 class="m-b-0 m-r-5">4</h2>
                     <span class="text-gray">Launch Configs Created</span>
                 </div>
@@ -32,11 +35,14 @@
 
 
 <div class="file-manager-wrapper">
+
+    <!-- Side Navigation Bar with different car segment choices -->
     <div class="file-manager-nav" [ngClass]="{'nav-open': isNavOpen}">
         <div class="d-flex flex-column justify-content-between h-100">
             <div class="p-t-20">
                 <ul nz-menu [nzMode]="'inline'">
                     
+                    <!-- Car segment at index = i-->
                     <li nz-menu-item *ngFor="let carSegment of carSegmentsData; let i = index" [nzSelected]="i==0" (click)="segmentChange(i)">
                         <i class="text-primary"  style="font-size: 32px;"  nz-icon nzType="{{carSegment.svg}}" >
                         </i>
@@ -46,20 +52,27 @@
             </div>
         </div>
     </div>
+
+    <!-- Main body of the page -->
     <div class="file-manager-content">
         <div>
+            <!-- Name of the car segment selected with brief description -->
             <div class="row">
                 <div class="col-md-12">
                     <nz-card>
                         <div class="d-flex justify-content-between">
+                            <!-- Name of the segment selected -->
                             <div class="media align-items-center">
+                                <!-- Icon of the car segment -->
                                 <i nz-icon nzType="{{carSegmentSelected.svg}}" class="text-primary" style="font-size: 48px;"></i>
                                 <div class="m-l-10">
+                                    <!-- Heading -->
                                     <h4 class="m-b-0">{{carSegmentSelected.label}} | {{carSegmentSelected.short_desc}}</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="m-t-40">
+                            <!-- Display a brief discription of the car segment selected -->
                             <h6>Description:</h6>
                             <p>{{carSegmentSelected.long_desc}}</p>
                         </div>
@@ -121,6 +134,7 @@
                 <h4 class="font-weight-normal m-b-10">{{carSegmentSelected.label}} Sales Performance</h4>
             </div>
             <div class="row">
+                <!-- Line chart of Sales -->
                 <div class="col-md-12 col-lg-6">
                     <nz-card>
                         <div class="d-flex justify-content-between align-items-center">
@@ -144,6 +158,8 @@
                         </div>
                     </nz-card>
                 </div>
+
+                <!-- Donut chart for % Sales Against other Segments -->
                 <div class="col-md-12 col-lg-6">
                     <nz-card>
                         <h5 class="m-b-0">% Sales Against other Segments</h5>
@@ -200,6 +216,7 @@
                 <h4 class="font-weight-normal m-b-10">{{carSegmentSelected.label}} Price Distribution</h4>
                 <div class="row">
                     <div class="col-md-12">
+                        <!-- Box Plot -->
                         <nz-card>
                             <echarts [options]="priceDistribution" class="demo-chart"></echarts>
                         </nz-card>

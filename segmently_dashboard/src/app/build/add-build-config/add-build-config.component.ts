@@ -1,3 +1,5 @@
+//Importing all the required libraries and modules
+
 import { Component } from '@angular/core';
 import { NzIconService } from 'ng-zorro-antd/icon';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -60,7 +62,7 @@ export class AddBuildConfigComponent {
     randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
-
+     //fillRandomData() for filling the random choices in form module by a button click
     public fillRandomData(){
         let random_dict = {}
         for (const [key, value] of Object.entries(this.featuresFormConfigs)) {
@@ -69,6 +71,7 @@ export class AddBuildConfigComponent {
                 random_dict[key] = value_array[this.randomIntFromInterval(0,(value_array.length-1))]
             }
             if(this.isObject(value)){
+                //rounding up the floating point numbers
                 random_dict[key] =  Math.round((value['max'] - value['min'])/20 * this.randomIntFromInterval(-10,10) + value['mean'])
             }
         }

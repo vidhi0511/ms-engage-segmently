@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
     purpleLight = this.themeColors.purpleLight;
     red = this.themeColors.red;
 
+    
     isNavOpen: boolean = false;
     carSegmentsData = this.carSegments.get()
     carSegmentSelected: any;
