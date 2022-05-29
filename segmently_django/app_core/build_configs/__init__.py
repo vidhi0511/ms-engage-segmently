@@ -1,0 +1,1 @@
+default_app_config = 'app_core.build_configs.apps.BuildConfigConfig'

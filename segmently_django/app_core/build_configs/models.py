@@ -2,7 +2,6 @@ from app_core.base_model.models import BaseModelTemplate
 
 from django.db import models
 from django.utils import timezone
-from app_core.build_configs.tasks import do_something
 
 STATUS_CHOICES = (
     ("QUEUED","QUEUED"),
@@ -25,7 +24,3 @@ class BuildConfig(BaseModelTemplate) :
             models.indexes.Index(fields=['-name']),
         ]
     
-    def save(self, *args, **kwargs):
-        print("Came here")
-        r = do_something.schedule((), delay=2)
-        super(BuildConfig, self).save(*args, **kwargs)

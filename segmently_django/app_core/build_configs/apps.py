@@ -5,4 +5,7 @@ from django.apps import AppConfig
 
 
 class BuildConfigConfig(AppConfig):
-    name = 'build_config'
+    name = 'app_core.build_configs'
+
+    def ready(self):
+        import app_core.build_configs.signals
