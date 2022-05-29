@@ -54,12 +54,21 @@ The user is an automotive OEM (Original Equipment Manufacturer). He wants to gai
 
 ### Installation steps
 
-It will just take one step to run the project after cloning it :-)
+It will just take two steps to run the project after cloning it :-) 
 
+Step 1: Creates all the docker containers
 ```
 ./run.sh
 ```
+
+Step 2: Populates initial data in API for Angular Dashboard to work
+```
+(For Local Dev)=> Run Juyter Notebook Cells to populate APIs for dashboarding
+```
+
 Kindly note that all builds are done in the `Dockerfile` so the installation is easy, but the build process, specially for Angular application will take some time as it is two stage docker image based orchestration
+
+
 
 ### (Optional) Installation Steps for JupyterNotebook (jupyter-data-analysis): 
 
