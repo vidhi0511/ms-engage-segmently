@@ -111,5 +111,7 @@ npm start
 
 
 ## FUTURE SCOPE:🤖
-
+- Pickle based integration on Django Huey - Consumer Threads
+- Launch Configuration to support multiple variants
+- Interactive graphs and query for the OEM
 
