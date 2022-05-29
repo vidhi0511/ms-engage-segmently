@@ -30,6 +30,13 @@ export class AddBuildConfigComponent {
         this.appService.createBuildConfigData(buildName,selectSegment,config_data).subscribe(data => {
             console.log(data)
             this.message.success('Build Configuration Created Successfully!')
+            this.addNewBuildConfigFormGroup.reset();
+            for (const key in this.addNewBuildConfigFormGroup.controls) {
+            if (this.addNewBuildConfigFormGroup.controls.hasOwnProperty(key)) {
+                this.addNewBuildConfigFormGroup.controls[key].markAsPristine();
+                this.addNewBuildConfigFormGroup.controls[key].updateValueAndValidity();
+                }
+            }
         })
     }
 

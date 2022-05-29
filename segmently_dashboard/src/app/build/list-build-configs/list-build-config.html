@@ -4,7 +4,7 @@
             <div class="p-t-20">
                 <ul nz-menu [nzMode]="'inline'">
                     <li nz-menu-item *ngFor="let buildConfig of buildConfigsList; let i = index" [nzSelected]="i==0" (click)="buildConfigChange(i)">
-                        <i class="text-primary"  style="font-size: 32px;"  nz-icon nzType="{{buildConfig.svg}}" >
+                        <i class="text-primary"  style="font-size: 32px;"  nz-icon nzType="vehicles:coupe" >
                         </i>
                         <span>{{buildConfig.name}}</span>
                     </li>
@@ -17,6 +17,20 @@
             <h2 class="font-weight-normal">Build Configurations</h2>
         </div> -->
         <nz-tabset class="page-header-tab">
+            
+            <nz-tab nzTitle="Build Configuration">
+                <div class="container">
+                    <nz-list nzGrid>
+                        <div nz-row [nzGutter]="16">
+                          <div nz-col [nzXXl]="8" [nzXl]="4" [nzLg]="6" [nzMd]="6" [nzSm]="12" [nzXs]="24" *ngFor="let config of buildConfigSelected.config_input_data | keyvalue">
+                            <nz-list-item>
+                              <nz-card [nzTitle]="config.key">{{config.value}}</nz-card>
+                            </nz-list-item>
+                          </div>
+                        </div>
+                      </nz-list>
+                </div>
+            </nz-tab>
             <nz-tab nzTitle="Analytics Report">
                 <div class="container">
                     <h1 style="font-size:1.7rem ;">Plots based upon the Clusters</h1><br>
@@ -30,10 +44,6 @@
                     <img src="/assets/images/download3.png" alt="image" style="width: 700px;margin-bottom: 9%;margin-top: 2%;">
                     <h2>3-D Scatter Plot of the Three Clusters</h2>
                     <img src="/assets/images/newplot.png" alt="image" style="width: 700px;margin-bottom: 9%;margin-top: 2%;">
-                </div>
-            </nz-tab>
-            <nz-tab nzTitle="Build Configuration">
-                <div class="container">
                 </div>
             </nz-tab>
         </nz-tabset>          

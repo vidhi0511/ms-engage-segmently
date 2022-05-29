@@ -20,6 +20,10 @@ export class AppsService {
         })
     }
 
+
+    public getAllBuildConfigs(): Observable<any> {
+        return this.http.get(environment.API_URL + '/api/v1/core/build-config/?page_size=100')
+    }
     
 
     

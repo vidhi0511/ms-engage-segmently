@@ -6,6 +6,7 @@ import { SegmentDiscoverService } from "../shared/services/segment-discover.serv
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AppsService } from '../shared/services/apps.service';
 
 @Component({
     selector: 'app-discover',
@@ -30,11 +31,15 @@ export class DashboardComponent implements OnInit {
     carSegmentSelected: any;
     test3dOptions: any;
     segmentDashboardData: any;
+    buildConfigCount: BigInteger;
 
-    constructor(private carSegments : CarSegmentConstantService, private colorConfig:ThemeConstantService, private segmentDiscoverService:SegmentDiscoverService, private http: HttpClient) {}
+    constructor(private carSegments : CarSegmentConstantService, private colorConfig:ThemeConstantService, private segmentDiscoverService:SegmentDiscoverService, private appsService:AppsService, private http: HttpClient) {}
 
     ngOnInit(): void { 
         this.carSegmentSelected = this.carSegmentsData[0]
+        this.appsService.getAllBuildConfigs().subscribe((data)=>{
+          this.buildConfigCount = data.count
+        })
 
         this.test3dOptions = {
               xAxis3D: {
