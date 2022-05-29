@@ -9,12 +9,13 @@ dataclasses==0.6
 dj-database-url==0.4.1
 dj-static==0.0.6
 Django==2.2.3
+django-cors-headers==2.5.3
 django-extensions==1.7.9
 django-filter==2.0.0
 django-rest-swagger==2.1.2
 django-reversion==3.0.2
 django-toolbelt==0.0.1
-djangorestframework==3.9
+djangorestframework==3.9.0
 djangorestframework-filters==1.0.0.dev0
 djongo==1.2.33
 dry-rest-permissions==0.1.10
@@ -30,6 +31,7 @@ MarkupSafe==1.1.1
 olefile==0.44
 openapi-codec==1.3.2
 promise==2.2.1
+psycopg2==2.9.3
 pymongo==3.8.0
 pytz==2017.3
 PyYAML==3.13
@@ -40,6 +42,5 @@ singledispatch==3.4.0.3
 six==1.11.0
 sqlparse==0.2.4
 static3==0.7.0
-typing==3.6.6
 uritemplate==3.0.0
 urllib3==1.22
