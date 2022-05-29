@@ -19,6 +19,7 @@ INSTALLED_APPS += [
     'rest_framework_swagger',
     'django_extensions',
     'dry_rest_permissions',
+     'huey.contrib.djhuey',
 ]
 
 

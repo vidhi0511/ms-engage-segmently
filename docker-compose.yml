@@ -32,6 +32,20 @@ services:
       options:
         max-file: "5"
         max-size: 10m
+  redis:
+    image: redis:5.0.10
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - redisdata:/data
+    networks:
+      all:
+        ipv4_address: 172.16.238.8
+    logging:
+      options:
+        max-file: "5"
+        max-size: 10m
   segmently_django:
     build: ./segmently_django
     restart: always
