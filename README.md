@@ -1,30 +1,64 @@
-# Segmently - Better way to understand your customer segments
 
-## Microsoft Engage 2022 | Data Analysis
+# Dashboard
 
-## The Challenge
+ ## Step 1: Discover
+The discover page would offer the user attractive data visualization (like sales data, price data, etc.) on a monthly and yearly basis.
 
-Develop an application to demonstrate how the Automotive Industry could harness data to take informed decisions.
-Demonstrate the use of data analytics in identifying:
-- Customer segments
-- Most popular car specification combination (engine type, fuel, mileage, etc)
-- Right time to launch a new car, etc
+- The user can select any segment of choice by clicking on the buttons on the sub sidebar.
 
-## User Problem Understanding
+      Segments available for choice :
+        
+        Car A: Hatchbacks
 
-User is an automotive OEM (Original Equiment Manufacture). He wants to gain understanding on following pain points:
-- Which new car to position in the market for the target audience and what should be the expected sales?
-    - Should a car be positioned in a Mid SUV range and at what price?
-- What updates to launch in the exsting car models at a varient level or as a revamp? For example:
-    - Tata Harrier would like to check whether adding a petrol varient will increase the sales
-    - Hyundai Santro would like to check if they should revamp or upgrade features at varient
+        Car B: Premium Hatchbacks
+
+        Car C: Compact Sedan
+
+        Car D: Premium Sedan
+
+        SUV A: Compact Sub-4-meter SUV
+
+        SUV B : Premium Sub-4-meter SUV
+
+        SUV C: Compact SUV
+
+        SUV D: Premium SUV
+
+        MPV: Multi-Purpose Vehicle
+
+- After selection, the graphical representation of the data will render the user to get an insight into the data.
+
+- After analysing the data, the user can move forward to create the build configuration.
+    
+
+  
+
+ ## Step 2: Build
+- Add build configuration
 
 
-## Agile Development Methodolgy
-- I have divided the program into three weekly sprints with one epic for each sprint
-- For the first sprint, the epic is to create a working data science pipeleine to meet the requirements of the user problem
-- For the second sprint, the epic is to create a working dashboard which will give access to the OEMs to access the dashboard & make queries
-- For the thrid sprint, the epic to to create a dockerized container with database which can host end to end solution
+    The user can choose and add features to the car configuration and save it.
 
-## Solution Architecture
+- Saved build configuration
 
+    The saved build configurations will be displayed here. User can edit the saved configuration(s) and add or delete the feature(s) of choice.
+
+
+ ## Step 3: Launch
+
+ This page will render the user launch data ,i.e., Sales estimation of the build, the best time to launch, etc.
+
+
+
+ ### Sales Estimation Algorithm
+
+
+ #### Linear Regression
+ 
+ Linear Regression is a machine learning algorithm based on supervised learning. Regression models a target prediction value based on independent variables. It is used for finding out the relationship between variables and forecasting. Different regression models differ based on – the type of relationship between dependent and independent variables , and the number of independent variables used.
+
+ This algorithm will be used to estimate sales using features and prices of the car at the make-model level.
+
+ 
+
+ 
