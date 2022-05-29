@@ -113,6 +113,7 @@ export class DashboardComponent implements OnInit {
         this.createSalesGraph()
         this.createSalesPieChart()
         this.makePriceDistributionGraph()
+        this.makeProductList()
       })
     }
 
@@ -191,44 +192,23 @@ export class DashboardComponent implements OnInit {
         }
     ];
     revenueChartType = 'line';
+    productsList: Array<any> = [];
 
-    productsList = [
-        {
-            name: 'Gray Sofa',
-            avatar: 'assets/images/others/thumb-9.jpg',
-            earn: 1912,
-            sales: 81,
-            stock: 82,
-        },
-        {
-            name: 'Beat Headphone',
-            avatar: 'assets/images/others/thumb-10.jpg',
-            earn: 1377,
-            sales: 26,
-            stock: 61
-        },
-        {
-            name: 'Wooden Rhino',
-            avatar: 'assets/images/others/thumb-11.jpg',
-            earn: 9212,
-            sales: 71,
-            stock: 23,
-        },
-        {
-            name: 'Red Chair',
-            avatar: 'assets/images/others/thumb-12.jpg',
-            earn: 1298,
-            sales: 79,
-            stock: 54,
-        },
-        {
-            name: 'Wristband',
-            avatar: 'assets/images/others/thumb-13.jpg',
-            earn: 7376,
-            sales: 60,
-            stock: 76,
-        }
-    ]    
+    makeProductList(){
+      let varient_array = []
+      for (let key in this.segmentDashboardData.graph_data.variant_mean_price.avg_price) {
+        let value = this.segmentDashboardData.graph_data.variant_mean_price.avg_price[key];
+        varient_array.push({
+          "make": key,
+          "model": key,
+          "varient": key,
+          "avg_price": value
+        })
+      }
+      
+      this.productsList = varient_array
+    }
+    
 
 
     // Pie Chart
